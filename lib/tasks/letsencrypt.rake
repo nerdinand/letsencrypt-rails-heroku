@@ -52,6 +52,7 @@ namespace :letsencrypt do
 
       # Get the domain name from Heroku
       hostname = domains.first
+      puts "open http://#{hostname}/#{challenge.filename}"
       open("http://#{hostname}/#{challenge.filename}").read
       puts "Done!"
 
