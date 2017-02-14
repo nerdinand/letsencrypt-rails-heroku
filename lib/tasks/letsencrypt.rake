@@ -51,7 +51,7 @@ namespace :letsencrypt do
       print "Testing filename works (to bring up app)..."
 
       # Get the domain name from Heroku
-      hostname = heroku.domain.list(heroku_app).first['hostname']
+      hostname = domains.first
       open("http://#{hostname}/#{challenge.filename}").read
       puts "Done!"
 
@@ -85,7 +85,7 @@ namespace :letsencrypt do
     certificate = client.new_certificate(csr) # => #<Acme::Client::Certificate ....>
 
     # Send certificates to Heroku via API
-    
+
     # First check for existing certificates:
     certificates = heroku.sni_endpoint.list(heroku_app)
 
